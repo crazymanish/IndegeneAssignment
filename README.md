@@ -225,11 +225,80 @@ extension ApiClientManager: UserProfileApisProtocol {
 }
 ```
 
-### Step6: Define Model(s)
-- Our `fetchUserProfiles` api is ready. Let's define the Model(s).
+### Step7: Define Model(s)
+- Our `fetchUserProfiles` api is ready. Let's define the Model(s), All model will inherit from `CodableModel` 👆, so Parsing logic will become so simple.
+- Based on JsonResponse, we require `3 CodableModel` models.
+- Let's see:  
+- **1. Top Level Model** -> `UserProfileResponseModel`
+```swift
+/**
+ User Profile Response Model.
+ */
+struct UserProfileResponseModel: CodableModel {
+    let userProfiles: [UserProfileModel]
+    let total: Int
+    let hasMore: Bool
+    let page: Int
+    let quotaMax: Int
+    let quotaRemaining: Int
+
+    enum CodingKeys: String, CodingKey {
+        case userProfiles = "items"
+        case hasMore = "has_more"
+        case quotaMax = "quota_max"
+        case quotaRemaining = "quota_remaining"
+        case total
+        case page
+    }
+}
+```
+- **2. UserProfile Model** -> `UserProfileModel`
+```swift
+/**
+ User Profile Model.
+ */
+struct UserProfileModel: CodableModel {
+    let accountId: Int
+    let reputation: Int
+    let userType: String
+    let userId: Int
+    let name: String
+    let badgeCounts: UserBadgeCountModel
+    let image: String?
+    let location: String?
+    let websiteUrl: String?
+
+    enum CodingKeys: String, CodingKey {
+        case accountId = "account_id"
+        case userType = "user_type"
+        case userId = "user_id"
+        case name = "display_name"
+        case image = "profile_image"
+        case websiteUrl = "website_url"
+        case badgeCounts = "badge_counts"
+        case reputation
+        case location
+    }
+}
+```
+- **3. UserBadgeCount Model** -> `UserBadgeCountModel`
+```swift
+/**
+ User Badge Count Model.
+ */
+struct UserBadgeCountModel: CodableModel {
+    let bronze: Int
+    let silver: Int
+    let gold: Int
+}
+```
+
 
 
 # ---------------------- Updating ReadMe file (In PROGRESS) -----------------------------
+
+# Time spent
+- 7 hours approx. after office working hours. 🚀
 
 # Requirements
 - iOS 10.0+
