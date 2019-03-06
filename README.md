@@ -130,8 +130,12 @@ extension CodableModel {
 ```
 
 ### Step6: Find public Api(s) which we can use in demo project
+- The Stack Exchange API provides a mechanism to query items from the `Stack Exchange` network.
+- We are going to use the `/users/moderators API`. As the name implies, it returns the list of users for a specific site.
+- The `API response is paginated`; the first time we request the list of users, we won’t receive the whole list. Instead, we’ll get a list with a limited number of the users (a page) and a number indicating the total number of users in their system.
 
-
+Here’s the JSON response:
+![](Documents/JsonResponse.jpg)
 
 # ---------------------- Updating ReadMe file (In PROGRESS) -----------------------------
 
