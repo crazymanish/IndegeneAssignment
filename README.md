@@ -14,7 +14,7 @@ After follow the below steps, solution looks like below: <br/>
 :point_right: Build the interface like YouTube have proper storyboards and auto layouts in place. ✅ <br/>
 :point_right: Tap any cell from the list should show details. ✅ <br/>
 :point_right: Use best coding practices and design principles. ✅ <br/>
- - **TODO:**
+ - **TODO:** 😞 <br/>
 :point_right: Any video should play in the picture mode as you see in Youtube when video is playing user can scroll the list view and position video any where in screen. <br/>
 
 
