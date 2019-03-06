@@ -133,9 +133,100 @@ extension CodableModel {
 - The Stack Exchange API provides a mechanism to query items from the `Stack Exchange` network.
 - We are going to use the `/users/moderators API`. As the name implies, it returns the list of users for a specific site.
 - The `API response is paginated`; the first time we request the list of users, we won’t receive the whole list. Instead, we’ll get a list with a limited number of the users (a page) and a number indicating the total number of users in their system.
+- To learn more about this specific API, visit [Usage of /users/moderators](https://api.stackexchange.com/docs/moderators).
 
 Here’s the JSON response:
 ![](Documents/JsonResponse.jpg)
+
+### Step6: Setup GetUserProfiles API
+- This section can be divided into 3 simple steps.
+
+#### Step6.1: Define protocol for UserProfile API
+This is critical step, by using protocol we will able to use Mock/FAKE response later point of time.
+```swift
+/**
+ UserProfile Apis Protocol
+
+ @note: Prorocol oriented approach will always help us in STUB/FAKE response.
+ */
+protocol UserProfileApisProtocol {
+    /**
+     User Profile Api(s).
+     */
+    func fetchUserProfiles(page: Int, completionBlock: @escaping (UserProfileResponseModel?, Error?) -> Void)
+
+
+    /**
+     TODO: Write here more User Profile related Api(s).
+
+     */
+}
+```
+
+#### Step6.2: Prepare GetUserProfiles API request
+In this step, we are going to prepare `GetUserProfilesApiRequest` which will Implement `ApiRequest` 👆.  
+```swift
+/**
+ UserProfile Apis Protocol
+
+ @note: Prorocol oriented approach will always help us in STUB/FAKE response.
+ */
+protocol UserProfileApisProtocol {
+    /**
+     User Profile Api(s).
+     */
+    func fetchUserProfiles(page: Int, completionBlock: @escaping (UserProfileResponseModel?, Error?) -> Void)
+
+
+    /**
+     TODO: Write here more User Profile related Api(s).
+
+     */
+}
+```
+
+#### Step6.3: Lets Implement fetchUserProfiles API defined in Step6.1
+This step will use `GetUserProfilesApiRequest` from Step6.2 and process the request using `ApiClientManager`. On completion, This will return the `UserProfileResponseModel` object or Error (in case of any).
+Api has `page` as input parameter, which will be helpful for pagination API implementation.
+```swift
+/**
+ User Profile Api(s).
+ These Api request(s) will be Async request, completionBlock will called when request will finish.
+
+ */
+extension ApiClientManager: UserProfileApisProtocol {
+
+    /**
+     Fetch User Profile Api: Fetch User Profile from Server.
+
+     */
+    func fetchUserProfiles(page: Int, completionBlock: @escaping (UserProfileResponseModel?, Error?) -> Void) {
+        // Create Instance of `Get UserProfiles Api Request`
+        var userProfileRequest = GetUserProfilesApiRequest()
+        userProfileRequest.path = String(format: userProfileRequest.path, page)
+
+        // Call "GET" UserProfile Api.
+        self.get(userProfileRequest) { (response) in
+            if response.isValid {
+                completionBlock(UserProfileResponseModel.initWithResponse(response), response.error)
+            } else {
+                completionBlock(nil, response.error)
+            }
+        }
+    }
+
+
+
+    /**
+     TODO: Write here more User Profile related Api(s).
+
+     */
+}
+```
+
+### Step6: Define Model(s)
+- Our `fetchUserProfiles` api is ready. Let's define the Model(s).
+
 
 # ---------------------- Updating ReadMe file (In PROGRESS) -----------------------------
 
