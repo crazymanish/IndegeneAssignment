@@ -6,15 +6,15 @@ Indegene Company Assignment - iOS Role 06-March-2019
 
 This is Assignment project given by Indegene company, I follow the following steps to finish the assignment.
 # Step by Step Solution
-After follow the below steps, solution looks like below:
-:point_right: Create an app which should have a list view (UITableView) that has million of records. ✅
-:point_right: Table View should have infinite scrolling. ✅
-:point_right: Use any online data source/web service to display data in the table view. ✅
-:point_right: Implement concept of pagination and infinite scrolling. ✅
-:point_right: Build the interface like YouTube have proper storyboards and auto layouts in place. ✅
-:point_right: Tap any cell from the list should show details. ✅
-:point_right: Any video should play in the picture mode as you see in Youtube when video is playing user can scroll the list view and position video any where in screen. ❌
-:point_right: Use best coding practices and design principles. ✅
+After follow the below steps, solution looks like below: <br/>
+:point_right: Create an app which should have a list view (UITableView) that has million of records. ✅ <br/>
+:point_right: Table View should have infinite scrolling. ✅ <br/>
+:point_right: Use any online data source/web service to display data in the table view. ✅ <br/>
+:point_right: Implement concept of pagination and infinite scrolling. ✅ <br/>
+:point_right: Build the interface like YouTube have proper storyboards and auto layouts in place. ✅ <br/>
+:point_right: Tap any cell from the list should show details. ✅ <br/>
+:point_right: Any video should play in the picture mode as you see in Youtube when video is playing user can scroll the list view and position video any where in screen. ❌ <br/>
+:point_right: Use best coding practices and design principles. ✅ <br/>
 
 
 ![](Documents/IndegeneAssignment.gif)
