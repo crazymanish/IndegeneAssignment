@@ -1,0 +1,16 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+# ignore all warnings from all pods
+inhibit_all_warnings!
+
+platform :ios, '10.0'
+target 'ManishAssignment' do
+    use_frameworks!
+
+    pod 'Alamofire'
+    pod 'Kingfisher'
+
+    target 'ManishAssignmentTests' do
+        #Pods for Testing.
+    end
+end
