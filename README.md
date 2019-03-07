@@ -167,23 +167,30 @@ protocol UserProfileApisProtocol {
 #### Step6.2: Prepare GetUserProfiles API request
 In this step, we are going to prepare `GetUserProfilesApiRequest` which will Implement `ApiRequest` 👆.  
 ```swift
-/**
- UserProfile Apis Protocol
-
- @note: Prorocol oriented approach will always help us in STUB/FAKE response.
- */
-protocol UserProfileApisProtocol {
-    /**
-     User Profile Api(s).
-     */
-    func fetchUserProfiles(page: Int, completionBlock: @escaping (UserProfileResponseModel?, Error?) -> Void)
-
-
-    /**
-     TODO: Write here more User Profile related Api(s).
-
-     */
+// Web-service Api path(s).
+struct ApiPath {
+    static let getUserProfiles = "users/moderators?site=stackoverflow&filter=!-*jbN0CeyJHb&sort=reputation&order=desc&page=%d"
+    //more to go...
 }
+
+/**
+ Get User Profiles Api Request.
+
+ */
+struct GetUserProfilesApiRequest: ApiRequest {
+    var path: String
+
+    var body: Dictionary<String, Any>?
+
+    var query: Dictionary<String, String>?
+
+    var headers: Dictionary<String, String>?
+
+    init() {
+        self.path = ApiPath.getUserProfiles
+    }
+}
+
 ```
 
 #### Step6.3: Lets Implement fetchUserProfiles API defined in Step6.1
